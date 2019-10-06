@@ -12,7 +12,7 @@ class AddressService(BaseService):
         res = await self.get(street)
         return list(map(
             lambda r: Address(
-                address_code=r["codigoLogradouroInicio"], street=r["nomeLogradouro"]
+                address_code=r["codigoLogradouro"], street=r["nomeLogradouro"]
             ),
             res,
         ))

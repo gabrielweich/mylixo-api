@@ -5,6 +5,7 @@ from services.geocode import GeocodeService
 from starlette.middleware.cors import CORSMiddleware
 from typing import List
 from models.address import Address
+from models.collect import Collect
 
 origins = [
     "http:localhost",
@@ -30,7 +31,7 @@ async def addresses(street: str):
     return await AddressService().search_addresses(street)
 
 
-@app.get("/api/garbage-collection")
+@app.get("/api/garbage-collection", response_model=Collect)
 async def garbage_collection(address_code: str, number: int):
     print(address_code, number)
     return await GarbageService().collection_times(address_code, number)
