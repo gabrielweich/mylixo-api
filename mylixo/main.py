@@ -25,17 +25,20 @@ app.add_middleware(
 )
 
 
+#Busca os endereços a partir de uma rua
 @app.get("/api/addresses", response_model=List[Address])
 async def addresses(street: str):
     return await AddressService().search_addresses(street)
 
 
+#Busca o horário de coleta a partir de um endereço
 @app.get("/api/garbage-collection", response_model=Collect)
 async def garbage_collection(address_code: str, number: int):
     print(address_code, number)
     return await GarbageService().collection_times(address_code, number)
 
 
+#Busca o endereço a partir das coordenadas
 @app.get("/api/garbage-collection/coordinates", response_model=List[Address])
 async def garbage_by_coordinates(latitude: float, longitude: float):
     data = GeocodeService().reverse_geocoding(latitude, longitude)
