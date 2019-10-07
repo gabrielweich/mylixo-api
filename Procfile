@@ -1,1 +1,1 @@
-web: cd mylixo && uvicorn main:app
+web: uvicorn mylixo.main:app

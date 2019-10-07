@@ -1,6 +1,6 @@
 from .base import BaseService
-from config import GARBAGE_URL
-from models.collect import Collect
+from ..config import GARBAGE_URL
+from ..models.collect import Collect
 
 class GarbageService(BaseService):
     def __init__(self):

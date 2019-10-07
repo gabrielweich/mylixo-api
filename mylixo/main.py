@@ -1,15 +1,14 @@
 from fastapi import FastAPI
-from services.address import AddressService
-from services.garbage import GarbageService
-from services.geocode import GeocodeService
+from .services.address import AddressService
+from .services.garbage import GarbageService
+from .services.geocode import GeocodeService
 from starlette.middleware.cors import CORSMiddleware
 from typing import List
-from models.address import Address
-from models.collect import Collect
+from .models.address import Address
+from .models.collect import Collect
 
 origins = [
-    "http:localhost",
-    "http:localhost:3000",
+    "*",
 ]
 
 app = FastAPI(

@@ -1,6 +1,6 @@
 from .base import BaseService
-from config import ADDRESS_URL
-from models.address import Address
+from ..config import ADDRESS_URL
+from ..models.address import Address
 from typing import List
 
 
