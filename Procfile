@@ -1,0 +1,1 @@
+web: cd mylixo && uvicorn main:app
