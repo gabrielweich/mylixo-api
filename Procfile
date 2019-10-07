@@ -1,1 +1,1 @@
-web: uvicorn mylixo.main:app
+web: uvicorn mylixo.main:app --host 0.0.0.0 --port $PORT
