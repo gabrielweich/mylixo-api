@@ -3,6 +3,7 @@ from starlette.middleware.cors import CORSMiddleware
 from typing import List
 from .models.address import Address
 from .models.collect import Collect
+from .models.favorite import Favorite
 from .application import Application
 from .config import config
 
@@ -55,3 +56,26 @@ async def garbage_by_coordinates(latitude: float, longitude: float):
     controller = application.address_controller
     return await controller.find_by_coordinates(latitude, longitude)
 
+
+@api.get("/api/favorites", response_model=List[Favorite])
+async def favorites_by_user(user_id):
+    controller = application.favorite_controller
+    return await controller.get_by_user(user_id)
+
+
+@api.post("/api/favorites", response_model=Favorite)
+async def create_favorite(favorite: Favorite):
+    controller = application.favorite_controller
+    return await controller.create(favorite)
+
+
+@api.put("/api/favorites", response_model=Favorite)
+async def update_favorite(favorite: Favorite):
+    controller = application.favorite_controller
+    return await controller.update(favorite)
+
+
+@api.delete("/api/favorites", response_model=Favorite)
+async def delete_favorite(user_id: int, address_code: int):
+    controller = application.favorite_controller
+    return await controller.create(user_id, address_code)
