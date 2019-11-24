@@ -1,4 +1,5 @@
 from .abstract import AbstractFavoriteRepo
+from ...models.favorite import Favorite
 
 
 class FavoriteRepository(AbstractFavoriteRepo):
@@ -14,17 +15,19 @@ class FavoriteRepository(AbstractFavoriteRepo):
                         user_id,
                         address_code,
                         address_number,
+                        address_street,
                         label
                     )
-                    VALUES ($1, $2, $3, $4);
+                    VALUES ($1, $2, $3, $4, $5);
                 """,
                 favorite.user_id,
                 favorite.address_code,
                 favorite.address_number,
+                favorite.address_street,
                 favorite.label,
             )
-        
-        return favorite
+
+            return favorite
 
     async def update(self, favorite):
         pass
@@ -40,6 +43,5 @@ class FavoriteRepository(AbstractFavoriteRepo):
                     WHERE user_id = {user_id};
                 """
             )
-            print(rows)
-            return rows
+            return [Favorite(**r) for r in rows]
 
