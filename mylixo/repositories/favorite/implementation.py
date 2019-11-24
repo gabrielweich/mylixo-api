@@ -27,22 +27,32 @@ class FavoriteRepository(AbstractFavoriteRepo):
                 favorite.address_street,
                 favorite.label,
             )
-            print(data)
+
             return FavoriteEntity(**data)
 
     async def update(self, favorite):
         pass
 
-    async def delete(self, user_id, address_code):
-        pass
+    async def delete(self, user_id, favorite_id):
+        async with self.database.client.acquire() as con:
+            res = await con.fetchrow(
+                f"""
+                    DELETE FROM favorites
+                    WHERE user_id = $1 and favorite_id = $2
+                    RETURNING *;
+                """,
+                user_id,
+                favorite_id,
+            )
+            return FavoriteEntity(**res)
 
     async def get_by_user(self, user_id):
         async with self.database.client.acquire() as con:
             rows = await con.fetch(
                 f"""
                     SELECT * FROM favorites
-                    WHERE user_id = {user_id};
-                """
+                    WHERE user_id = $1;
+                """,
+                user_id,
             )
             return [FavoriteEntity(**r) for r in rows]
-
