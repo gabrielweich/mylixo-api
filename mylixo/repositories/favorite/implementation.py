@@ -31,7 +31,25 @@ class FavoriteRepository(AbstractFavoriteRepo):
             return FavoriteEntity(**data)
 
     async def update(self, favorite):
-        pass
+        async with self.database.client.acquire() as con:
+            res = await con.fetchrow(
+                f"""
+                    UPDATE favorites SET
+                        address_code = $3
+                        address_street = $4
+                        address_number = $5
+                        label = $6
+                    WHERE user_id = $1 and favorite_id = $2;
+                """,
+                favorite.user_id,
+                favorite.favorite_id,
+                favorite.address_code,
+                favorite.address_street,
+                favorite.address_number,
+                favorite.label,
+            )
+
+            return FavoriteEntity(**res)
 
     async def delete(self, user_id, favorite_id):
         async with self.database.client.acquire() as con:
