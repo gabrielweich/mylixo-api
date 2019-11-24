@@ -58,7 +58,7 @@ async def garbage_by_coordinates(latitude: float, longitude: float):
 
 
 @api.get("/api/favorites", response_model=List[Favorite])
-async def favorites_by_user(user_id):
+async def favorites_by_user(user_id: int):
     controller = application.favorite_controller
     return await controller.get_by_user(user_id)
 
