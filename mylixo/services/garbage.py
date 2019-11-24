@@ -10,5 +10,7 @@ class GarbageService(BaseService):
 
     async def collection_times(self, address_code, number):
         res = await self.get(f"codLogradouro={address_code};numero={number}")
-        if res:
+
+        if res and "erro" not in res:
             return Collect(time=res[0]["coleta"])
+        return None
