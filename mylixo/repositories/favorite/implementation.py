@@ -11,7 +11,7 @@ class FavoriteRepository(AbstractFavoriteRepo):
     async def update(self, favorite):
         pass
 
-    async def delete(self, user_id, address_code):
+    async def delete(self, user_id, favorite_id):
         pass
 
     async def get_by_user(self, user_id):

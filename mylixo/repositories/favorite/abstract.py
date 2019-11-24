@@ -21,5 +21,5 @@ class AbstractFavoriteRepo(ABC):
         pass
 
     @abstractmethod
-    async def delete(self, user_id: int, address_code: int) -> Favorite:
+    async def delete(self, user_id: int, favorite_id: str) -> Favorite:
         pass
