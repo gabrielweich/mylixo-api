@@ -6,7 +6,9 @@ class Base:
 
 
 class Dev(Base):
-    database = {}
+    database = {
+        "srv": "mongodb+srv://admin:gesiel@cluster0-vnjra.gcp.mongodb.net/test?retryWrites=true&w=majority"
+    }
 
 
 class Prod(Base):
