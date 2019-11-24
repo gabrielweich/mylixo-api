@@ -6,7 +6,14 @@ class FavoriteRepository(AbstractFavoriteRepo):
         self.database = database
 
     async def create(self, favorite):
-        pass
+        async with self.database.client.aquire() as con:
+            await con.execute(
+                f"""
+                    INSERT INTO favorites (user_id, address_code, label)
+                    VALUES ({favorite.user_id}, {favorite.address_code}, '{favorite.label}');
+                """
+            )
+        return favorite
 
     async def update(self, favorite):
         pass
@@ -15,4 +22,14 @@ class FavoriteRepository(AbstractFavoriteRepo):
         pass
 
     async def get_by_user(self, user_id):
-        pass
+        async with self.database.client.aquire() as con:
+            rows = await con.execute(
+                f"""
+                    SELECT * FROM favorites
+                    WHERE user_id = {user_id};
+                """
+            )
+
+            return rows
+
+        

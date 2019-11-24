@@ -6,7 +6,9 @@ class Base:
 
 
 class Dev(Base):
-    database = {}
+    database = {
+        "dsn": "postgres://sleyokyr:MIq481oqVQMD8JQL0bdt2vPAlCu6Swz7@tuffi.db.elephantsql.com:5432/sleyokyr"
+    }
 
 
 class Prod(Base):
