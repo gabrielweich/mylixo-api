@@ -1,5 +1,5 @@
 from .abstract import AbstractFavoriteRepo
-from ...models.favorite import Favorite
+from ...models.favorite import FavoriteEntity
 
 
 class FavoriteRepository(AbstractFavoriteRepo):
@@ -9,7 +9,7 @@ class FavoriteRepository(AbstractFavoriteRepo):
     async def create(self, favorite):
 
         async with self.database.client.acquire() as con:
-            await con.execute(
+            data = await con.fetchrow(
                 f"""
                     INSERT INTO favorites (
                         user_id,
@@ -18,7 +18,8 @@ class FavoriteRepository(AbstractFavoriteRepo):
                         address_street,
                         label
                     )
-                    VALUES ($1, $2, $3, $4, $5);
+                    VALUES ($1, $2, $3, $4, $5)
+                    RETURNING *;
                 """,
                 favorite.user_id,
                 favorite.address_code,
@@ -26,8 +27,8 @@ class FavoriteRepository(AbstractFavoriteRepo):
                 favorite.address_street,
                 favorite.label,
             )
-
-            return favorite
+            print(data)
+            return FavoriteEntity(**data)
 
     async def update(self, favorite):
         pass
@@ -43,5 +44,5 @@ class FavoriteRepository(AbstractFavoriteRepo):
                     WHERE user_id = {user_id};
                 """
             )
-            return [Favorite(**r) for r in rows]
+            return [FavoriteEntity(**r) for r in rows]
 
