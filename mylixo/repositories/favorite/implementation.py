@@ -35,11 +35,12 @@ class FavoriteRepository(AbstractFavoriteRepo):
             res = await con.fetchrow(
                 f"""
                     UPDATE favorites SET
-                        address_code = $3
-                        address_street = $4
-                        address_number = $5
+                        address_code = $3,
+                        address_street = $4,
+                        address_number = $5,
                         label = $6
-                    WHERE user_id = $1 and favorite_id = $2;
+                    WHERE user_id = $1 and favorite_id = $2
+                    RETURNING *;
                 """,
                 favorite.user_id,
                 favorite.favorite_id,
