@@ -69,13 +69,13 @@ async def create_favorite(favorite: Favorite):
     return await controller.create(favorite)
 
 
-@api.put("/api/favorites", response_model=Favorite)
-async def update_favorite(favorite: Favorite):
+@api.put("/api/favorites", response_model=FavoriteEntity)
+async def update_favorite(favorite: FavoriteEntity):
     controller = application.favorite_controller
     return await controller.update(favorite)
 
 
-@api.delete("/api/favorites", response_model=Favorite)
+@api.delete("/api/favorites", response_model=FavoriteEntity)
 async def delete_favorite(user_id: int, favorite_id: str):
     controller = application.favorite_controller
     return await controller.delete(user_id, favorite_id)
