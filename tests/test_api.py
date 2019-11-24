@@ -1,8 +1,8 @@
 from starlette.testclient import TestClient
-from mylixo.main import app
+from mylixo.main import api
 
 
-client = TestClient(app)
+client = TestClient(api)
 
 
 def test_addresses():

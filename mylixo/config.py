@@ -1,2 +1,16 @@
-ADDRESS_URL = "https://cdlrest.procempa.com.br/cdlrest/rest/endereco;q="
-GARBAGE_URL = "https://coletaseletiva.procempa.com.br/coletaseletiva/rest/coleta/pesquisa;"
+import os
+
+
+class Base:
+    opencage_key = "22d0a7c38c6c46408479b5892a0fabdb"
+
+
+class Dev(Base):
+    database = {}
+
+
+class Prod(Base):
+    database = {}
+
+
+config = Prod() if os.getenv("ENV", "development") == "production" else Dev()
