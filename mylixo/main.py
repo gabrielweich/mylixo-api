@@ -76,6 +76,6 @@ async def update_favorite(favorite: Favorite):
 
 
 @api.delete("/api/favorites", response_model=Favorite)
-async def delete_favorite(user_id: int, favorite_id: int):
+async def delete_favorite(user_id: int, favorite_id: str):
     controller = application.favorite_controller
     return await controller.delete(user_id, favorite_id)

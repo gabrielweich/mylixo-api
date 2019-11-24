@@ -11,8 +11,8 @@ class FavoriteController:
     async def update(self, favorite: Favorite):
         return await self.favorite_repository.update(favorite)
 
-    async def delete(self, user_id, address_code):
-        return await self.favorite_repository.delete(user_id, address_code)
+    async def delete(self, user_id, favorite_id):
+        return await self.favorite_repository.delete(user_id, favorite_id)
 
     async def get_by_user(self, user_id):
         return await self.favorite_repository.get_by_user(user_id)
