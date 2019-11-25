@@ -6,6 +6,11 @@ class GeocodeService:
         self.geocoder = OpenCageGeocode(key)
 
     def reverse_geocoding(self, latitude, longitude):
+        """ Encontra a rua correspondente a uma determinada latitude/longitude
+
+        Retorna:
+            Objeto contendo a rua encontrada
+        """
         res = self.geocoder.reverse_geocode(latitude, longitude, language="pt")
         if res:
             data = res[0]
