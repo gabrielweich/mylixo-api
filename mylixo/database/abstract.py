@@ -8,10 +8,12 @@ class AbstractDatabase(ABC):
 
     @abstractmethod
     async def connect(self):
-        pass
+        """ Opcional: Cria uma conexão com algum banco de dados
+            O método é executado antes de iniciar o servidor.
+        """
 
     @abstractmethod
     async def disconnect(self):
-        pass
-
-    
+        """ Opcional: Encerra a conexão criada
+            O método é executado ao encerrar o servidor.
+        """
