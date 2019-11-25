@@ -11,6 +11,11 @@ class AddressService(BaseService):
         super().__init__(BASE_URL)
 
     async def search_addresses(self, street) -> List[Address]:
+        """ Busca os endereços correspondentes a um determinada rua
+
+        Retorna:
+            Lista de endereços encontrados
+        """
         res = await self.get(street)
         return list(
             map(
