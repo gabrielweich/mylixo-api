@@ -30,16 +30,16 @@ pytest
 #### Implementação do framework
 ##### Hot spots:
 * mylixo/database/implementation.py: Os métodos "connect" e "disconnect" ficam disponíveis para o desenvolvedor implementar alguma conexão com o banco de dados.
-* mylixo/repositories/favorite/implementation.py: Os métodos de CRUD podem ser implementados se a aplicações for utilizá-los para salvar endereços de um usuário.
+* mylixo/repositories/favorite/implementation.py: Os métodos de CRUD podem ser implementados se a aplicação for utilizá-los para salvar endereços de um usuário.
 
-* mylixo/config.py: Aqui deve ser inserido as credencias para conexão com o banco de dados. A configuração a ser passar para o aquivo *database/implementation.py* é aquela contida na variável *database*. 
+* mylixo/config.py: Aqui deve ser inserido as credencias para conexão com o banco de dados. A configuração a ser passada para o aquivo *database/implementation.py* é aquela contida na variável *database*. 
 
 *Obs.: A implementação de desses pontos não é obrigatória caso não se implemente a funcionalidade de favoritos*
 
 
 ##### Camadas:
-* Services: Realizam a comunicação com serviços externos, tais como o serviço de geolocalização ou de coleta de lixo.
-* Controllers: Implementam as operações e as regras de negócio esperada para uma determinada rota.
+* Services: Realizam a comunicação com serviços externos, tais como o serviço de geolocalização e de coleta de lixo.
+* Controllers: Implementam as operações e as regras de negócio esperadas para uma determinada rota.
 * Repositories: Responsáveis pela comunicação com o mecanismo de persistência.
 
 
