@@ -19,7 +19,7 @@ h2==3.1.1
 hpack==3.0.0
 hstspreload==2019.9.30
 httptools==0.0.13
-httpx==0.7.4
+httpx==0.23.0
 hyperframe==5.2.0
 idna==2.8
 itsdangerous==1.1.0
